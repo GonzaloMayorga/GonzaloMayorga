@@ -1,0 +1,2 @@
+[console_scripts]
+profile-card = profile_card.main:main

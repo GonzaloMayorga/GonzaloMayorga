@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "github-profile-card"
+version = "0.1.0"
+description = "Generate a terminal-inspired SVG card for a GitHub profile."
+requires-python = ">=3.11"
+dependencies = [
+    "Jinja2>=3.1,<4.0",
+]
+
+[project.scripts]
+profile-card = "profile_card.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

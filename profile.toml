@@ -1,0 +1,22 @@
+[profile]
+username = "GonzaloMayorga"
+name = "Gonzalo Gabriel Mayorga"
+role = "Software Engineer"
+location = "Buenos Aires, Argentina"
+
+[system]
+os = ["Debian", "Windows"]
+
+[skills]
+languages = ["PHP", "TypeScript", "Java", "SQL"]
+backend = ["Laravel", "CodeIgniter", "Drupal"]
+frontend = ["Next.js", "React"]
+tools = ["Docker", "Git", "Kafka", "Playwright"]
+
+[stats]
+repos = "--"
+commits = "--"
+contributions = "--"
+stars = "--"
+followers = "--"
+lines_of_code = "--"
