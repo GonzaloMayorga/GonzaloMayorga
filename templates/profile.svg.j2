@@ -1,0 +1,203 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="900"
+    height="500"
+    viewBox="0 0 900 500"
+    role="img"
+    aria-labelledby="title description"
+>
+    <title id="title">{{ profile.name }} GitHub Profile</title>
+
+    <desc id="description">
+        Terminal inspired GitHub profile card for {{ profile.username }}
+    </desc>
+
+    <style>
+        .background {
+            fill: {{ theme.background }};
+        }
+
+        .border {
+            fill: none;
+            stroke: {{ theme.border }};
+            stroke-width: 1;
+        }
+
+        .text {
+            font-family:
+                "SFMono-Regular",
+                Consolas,
+                "Liberation Mono",
+                Menlo,
+                monospace;
+            font-size: 14px;
+            fill: {{ theme.primary }};
+        }
+
+        .secondary {
+            fill: {{ theme.secondary }};
+        }
+
+        .accent {
+            fill: {{ theme.accent }};
+            font-weight: 700;
+        }
+
+        .green {
+            fill: {{ theme.green }};
+        }
+
+        .purple {
+            fill: {{ theme.purple }};
+        }
+
+        .heading {
+            font-weight: 700;
+        }
+
+    </style>
+
+    <rect
+        class="background"
+        width="900"
+        height="500"
+        rx="8"
+    />
+
+    <rect
+        class="border"
+        x="0.5"
+        y="0.5"
+        width="899"
+        height="499"
+        rx="8"
+    />
+
+    <!-- PIXEL AVATAR -->
+
+    <g class="avatar">
+        {% set pixel_size = 3 %}
+
+        {% for row in avatar_matrix %}
+            {% set y = loop.index0 * pixel_size %}
+
+            {% for intensity in row %}
+                {% if intensity is not none %}
+                    {% set x = loop.index0 * pixel_size %}
+
+                    <rect
+                        x="{{ 55 + x }}"
+                        y="{{ 85 + y }}"
+                        width="{{ pixel_size }}"
+                        height="{{ pixel_size }}"
+                        fill="{{ theme.accent }}"
+                        fill-opacity="{{ 0.12 + (intensity * 0.88) }}"
+                    />
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </g>
+
+    <!-- PROFILE INFORMATION -->
+
+    <g class="text">
+
+        <!-- Header -->
+
+        <text x="390" y="60">
+            <tspan class="green">{{ profile.username }}</tspan><tspan class="secondary">@github</tspan>
+        </text>
+
+        <text x="390" y="80" class="secondary">
+            -----------------------------------------------
+        </text>
+
+        <!-- Basic info -->
+
+        <text x="390" y="110">
+            <tspan class="accent">Role</tspan>
+            <tspan x="500">{{ profile.role }}</tspan>
+        </text>
+
+        <text x="390" y="132">
+            <tspan class="accent">Location</tspan>
+            <tspan x="500">{{ profile.location }}</tspan>
+        </text>
+
+        <text x="390" y="154">
+            <tspan class="accent">OS</tspan>
+            <tspan x="500">{{ system.os | join(", ") }}</tspan>
+        </text>
+
+        <!-- Skills -->
+
+        <text x="390" y="195" class="purple heading">
+            Languages
+        </text>
+
+        <text x="390" y="217">
+            {{ skills.languages | join(", ") }}
+        </text>
+
+        <text x="390" y="250" class="purple heading">
+            Backend
+        </text>
+
+        <text x="390" y="272">
+            {{ skills.backend | join(", ") }}
+        </text>
+
+        <text x="390" y="305" class="purple heading">
+            Frontend
+        </text>
+
+        <text x="390" y="327">
+            {{ skills.frontend | join(", ") }}
+        </text>
+
+        <text x="390" y="360" class="purple heading">
+            Tools
+        </text>
+
+        <text x="390" y="382">
+            {{ skills.tools | join(", ") }}
+        </text>
+
+        <!-- Stats -->
+
+        <text x="55" y="390" class="purple heading">
+            GitHub Stats
+        </text>
+
+        <text x="55" y="418">
+            Repos
+            <tspan x="185">{{ stats.repos }}</tspan>
+        </text>
+
+        <text x="55" y="440">
+            Commits
+            <tspan x="185">{{ stats.commits }}</tspan>
+        </text>
+
+        <text x="55" y="462">
+            Stars
+            <tspan x="185">{{ stats.stars }}</tspan>
+        </text>
+
+        <text x="250" y="418">
+            Contribs
+            <tspan x="355">{{ stats.contributions }}</tspan>
+        </text>
+
+        <text x="250" y="440">
+            Followers
+            <tspan x="355">{{ stats.followers }}</tspan>
+        </text>
+
+        <text x="250" y="462">
+            Net LOC
+            <tspan x="355">{{ stats.lines_of_code }}</tspan>
+        </text>
+
+    </g>
+</svg>

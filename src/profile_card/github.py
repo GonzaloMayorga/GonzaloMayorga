@@ -1,10 +1,33 @@
 from dataclasses import dataclass
+import sys
 
 import httpx
 
 REST_API_URL = "https://api.github.com"
 GRAPHQL_API_URL = "https://api.github.com/graphql"
 API_VERSION = "2026-03-10"
+
+
+def error_summary(error: Exception) -> str:
+    """Useful diagnostics without logging credentials or remote response bodies."""
+    if isinstance(error, httpx.HTTPStatusError):
+        status = error.response.status_code
+        if status == 401:
+            return "HTTP 401: GitHub rejected GITHUB_TOKEN; replace it or unset it for public data."
+        if status in (403, 429):
+            return f"HTTP {status}: check token permissions and GitHub rate limits; retry later."
+        return f"HTTP {status}: GitHub request failed."
+    if isinstance(error, httpx.RequestError):
+        return "Network error while contacting GitHub; check connectivity and retry."
+    if isinstance(error, OSError):
+        return "Local file/model operation failed; check files, permissions and available disk space."
+    return "Invalid or unavailable data; check configuration, GitHub responses and local dependencies."
+
+
+def _count(value: object) -> int:
+    if type(value) is not int or value < 0:
+        raise ValueError("GitHub returned an invalid count")
+    return value
 
 
 @dataclass(frozen=True)
@@ -61,14 +84,16 @@ class GitHubClient:
     def get_repositories(self, username: str) -> list[dict]:
         repositories: list[dict] = []
 
-        page = 1 
+        page = 1
+        seen = set()
 
         while True:
             response = self._client.get(
                 f"{REST_API_URL}/users/{username}/repos",
                 params={
                     "type": "owner",
-                    "sort": "updated",
+                    "sort": "full_name",
+                    "direction": "asc",
                     "per_page": 100,
                     "page": page,
                 },
@@ -77,11 +102,17 @@ class GitHubClient:
             response.raise_for_status()
 
             current_page = response.json()
+            if not isinstance(current_page, list):
+                raise ValueError("Invalid repository list")
 
             if not current_page:
                 break
 
-            repositories.extend(current_page)
+            for repository in current_page:
+                name = repository["full_name"].casefold()
+                if name not in seen:
+                    repositories.append(repository)
+                    seen.add(name)
 
             if len(current_page) < 100:
                 break
@@ -126,7 +157,7 @@ class GitHubClient:
 
         if payload.get("errors"):
             raise RuntimeError(
-                f"GitHub GraphQL error: {payload['errors']}"
+                "GitHub GraphQL returned errors"
             )
 
         user = payload.get("data", {}).get("user")
@@ -139,32 +170,38 @@ class GitHubClient:
         contributions_collection = user["contributionsCollection"]
 
         return GitHubContributionStats(
-            commits=contributions_collection[
+            commits=_count(contributions_collection[
                 "totalCommitContributions"
-            ],
-            total=contributions_collection[
+            ]),
+            total=_count(contributions_collection[
                 "contributionCalendar"
-            ]["totalContributions"],
+            ]["totalContributions"]),
         )
 
-    def get_stats(self, username: str) -> GitHubStats:
+    def get_stats(
+        self,
+        username: str,
+        repositories: list[dict] | None = None,
+    ) -> GitHubStats:
         user = self.get_user(username)
-        repositories = self.get_repositories(username)
+
+        if repositories is None:
+            repositories = self.get_repositories(username)
 
         stars = sum(
-            repository.get("stargazers_count", 0)
+            _count(repository["stargazers_count"])
             for repository in repositories
         )
         
         try:
             contribution_stats = self.get_contributions(username)
-        except(httpx.HTTPError, RuntimeError) as error:
-            print(f"Warning: could not fetch contributions: {error}")
+        except (httpx.HTTPError, RuntimeError, ValueError, KeyError, TypeError, AttributeError) as error:
+            print(f"Warning: commits/contributions unavailable (--). {error_summary(error)}", file=sys.stderr)
             contribution_stats = None
 
         return GitHubStats(
-            repos=user["public_repos"],
-            followers=user["followers"],
+            repos=_count(user["public_repos"]),
+            followers=_count(user["followers"]),
             stars=stars,
             commits=(
                 contribution_stats.commits
@@ -176,4 +213,75 @@ class GitHubClient:
                 if contribution_stats is not None
                 else None
             ),
+        )
+
+    def get_repository_commits(
+        self,
+        owner: str,
+        repository: str,
+        author: str,
+    ) -> list[dict]:
+        commits: list[dict] = []
+
+        page = 1
+
+        while True:
+            response = self._client.get(
+                (
+                    f"{REST_API_URL}/repos/"
+                    f"{owner}/{repository}/commits"
+                ),
+                params={
+                    "author": author,
+                    "per_page": 100,
+                    "page": page,
+                },
+            )
+
+            # Only the explicit empty-repository response is a successful empty
+            # listing. A generic conflict must not prune cached history.
+            if response.status_code == 409:
+                payload = response.json()
+                if page == 1 and payload.get("message", "").casefold().rstrip(".") == "git repository is empty":
+                    return []
+
+            response.raise_for_status()
+
+            current_page = response.json()
+            if not isinstance(current_page, list):
+                raise ValueError("Invalid commit list")
+
+            if not current_page:
+                break
+
+            commits.extend(current_page)
+
+            if len(current_page) < 100:
+                break
+
+            page += 1
+
+        return commits
+
+    def get_commit_stats(
+        self,
+        owner: str,
+        repository: str,
+        sha: str,
+    ) -> tuple[int, int]:
+        response = self._client.get(
+            (
+                f"{REST_API_URL}/repos/"
+                f"{owner}/{repository}/commits/{sha}"
+            )
+        )
+
+        response.raise_for_status()
+
+        commit = response.json()
+        stats = commit["stats"]
+
+        return (
+            _count(stats["additions"]),
+            _count(stats["deletions"]),
         )

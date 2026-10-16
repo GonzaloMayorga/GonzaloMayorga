@@ -13,10 +13,14 @@ backend = ["Laravel", "CodeIgniter", "Drupal"]
 frontend = ["Next.js", "React"]
 tools = ["Docker", "Git", "Kafka", "Playwright"]
 
-[stats]
-repos = "--"
-commits = "--"
-contributions = "--"
-stars = "--"
-followers = "--"
-lines_of_code = "--"
+[metrics.loc]
+enabled = true
+include_forks = false
+exclude_repositories = [
+    "GonzaloMayorga/GonzaloMayorga"
+]
+
+[avatar]
+width = 96
+gamma = 0.9
+remove_background = true

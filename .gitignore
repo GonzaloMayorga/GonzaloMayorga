@@ -4,6 +4,19 @@
 
 __pycache__/
 *.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+cache/*.tmp
 
 generated/debug/
 :memory:.ses
+
+.agents
+.codex
+.aws/

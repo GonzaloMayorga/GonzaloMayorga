@@ -6,7 +6,6 @@ from PIL import Image, ImageEnhance, ImageOps
 
 
 AvatarMatrix = list[list[float | None]]
-BLOCK_CHARACTERS = "█▓▒░."
 ROOT_DIR = Path(__file__).resolve().parents[2]
 DEBUG_DIR = ROOT_DIR / "generated" / "debug"
 
@@ -179,60 +178,12 @@ def image_to_pixel_matrix(
 
     return matrix
 
-def image_to_blocks(
-    image: Image.Image,
-    width: int = 26,
-    gamma: float = 0.9,
-) -> list[str]:
-    grayscale, alpha = preprocess_subject(image)
-
-    aspect_ratio = grayscale.height / grayscale.width
-    height = max(1, int(width * aspect_ratio * 0.55))
-
-    grayscale = grayscale.resize(
-        (width, height),
-        Image.Resampling.LANCZOS,
-    )
-
-    alpha = alpha.resize(
-        (width, height),
-        Image.Resampling.LANCZOS,
-    )
-
-    grayscale_pixels = grayscale.load()
-    alpha_pixels = alpha.load()
-
-    lines: list[str] = []
-
-    for y in range(height):
-        row = []
-
-        for x in range(width):
-            if alpha_pixels[x, y] < 30:
-                row.append(" ")
-                continue
-
-            brightness = grayscale_pixels[x, y] / 255.0
-            brightness = brightness**gamma
-
-            index = int(brightness * (len(BLOCK_CHARACTERS) - 1))
-            row.append(BLOCK_CHARACTERS[index])
-
-        lines.append("".join(row).rstrip())
-
-    return lines
-
-
 def get_avatar_art(
     username: str,
     width: int = 42,
     gamma: float = 0.9,
     remove_bg: bool = True,
-    style: str = "blocks",
 ) -> AvatarMatrix:
-    if style not in {"blocks", "matrix", "pixels"}:
-        raise ValueError(f"Unsupported avatar style: {style}")
-
     image = download_avatar(username)
 
     save_debug_image(image, "01-original.png")

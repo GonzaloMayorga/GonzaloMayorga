@@ -1,7 +1,9 @@
 from pathlib import Path
 from typing import Any
 
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+from jinja2 import Environment, FileSystemLoader, StrictUndefined
+
+from profile_card.avatar import AvatarMatrix
 
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
@@ -34,7 +36,9 @@ THEMES = {
 def get_environment() -> Environment:
     return Environment(
         loader=FileSystemLoader(TEMPLATES_DIR),
-        autoescape=select_autoescape(["svg"]),
+        # The template ends in .j2, so extension-based SVG escaping misses it.
+        autoescape=True,
+        undefined=StrictUndefined,
         trim_blocks=True,
         lstrip_blocks=True,
     )
@@ -43,6 +47,7 @@ def get_environment() -> Environment:
 def render_profile(
     config: dict[str, Any],
     theme_name: str,
+    avatar_matrix: AvatarMatrix,
 ) -> str:
     if theme_name not in THEMES:
         raise ValueError(f"Unknown theme: {theme_name}")
@@ -53,18 +58,34 @@ def render_profile(
     return template.render(
         **config,
         theme=THEMES[theme_name],
+        avatar_matrix=avatar_matrix,
     )
 
 
 def write_profile(
     config: dict[str, Any],
     theme_name: str,
+    avatar_matrix: AvatarMatrix,
 ) -> Path:
-    GENERATED_DIR.mkdir(parents=True, exist_ok=True)
+    GENERATED_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
-    svg = render_profile(config, theme_name)
+    svg = render_profile(
+        config=config,
+        theme_name=theme_name,
+        avatar_matrix=avatar_matrix,
+    )
 
-    output_path = GENERATED_DIR / f"profile-{theme_name}.svg"
-    output_path.write_text(svg, encoding="utf-8")
+    output_path = (
+        GENERATED_DIR
+        / f"profile-{theme_name}.svg"
+    )
+
+    output_path.write_text(
+        svg,
+        encoding="utf-8",
+    )
 
     return output_path

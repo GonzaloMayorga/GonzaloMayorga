@@ -1,0 +1,293 @@
+{
+  "repositories": {
+    "gonzalomayorga/app-estaciones": {
+      "commits": {
+        "49158b1aeb6905fb04a5b755c0acc881728df833": {
+          "additions": 9847,
+          "deletions": 200
+        },
+        "7cb22113204c5abd52be4282efb2abc19374cc86": {
+          "additions": 1257,
+          "deletions": 0
+        },
+        "8a1fa3399abc24ee646dafe4d089e0caa9d5856b": {
+          "additions": 823,
+          "deletions": 0
+        },
+        "99b9ae94a72b97107661bd5eac563102663bac34": {
+          "additions": 125,
+          "deletions": 0
+        },
+        "9a0535facd0dcbac8f72d05aea762524d2ef91f3": {
+          "additions": 510,
+          "deletions": 2
+        },
+        "fb44eb373e92a72c830f2cb876244592badd359b": {
+          "additions": 312,
+          "deletions": 26
+        }
+      }
+    },
+    "gonzalomayorga/challenge-php---mvc": {
+      "commits": {
+        "e2a7c6f2bb78ded2494b1c41d86e12500fb48cca": {
+          "additions": 13,
+          "deletions": 0
+        },
+        "ff607462201eb75eed62a3403cd58cf24285c424": {
+          "additions": 1121,
+          "deletions": 0
+        }
+      }
+    },
+    "gonzalomayorga/chaza": {
+      "commits": {
+        "1c2d06cf196101f2d276cd6f98fcd9d07df21b17": {
+          "additions": 382,
+          "deletions": 0
+        },
+        "2146bdf73f7933963ff09677685684cf2d9d175d": {
+          "additions": 1,
+          "deletions": 1
+        },
+        "3a1266261f90d10e57b20a9132a6076cf20ea3e1": {
+          "additions": 1,
+          "deletions": 1
+        },
+        "56ed546c519c0c2b4f28cbd8b639184c14340fef": {
+          "additions": 2,
+          "deletions": 2
+        },
+        "6f4310ce8516af5804b1912c3d80ad8c277dfb91": {
+          "additions": 361,
+          "deletions": 0
+        },
+        "74511d96282cb5d66f5cc8e193de90106713af19": {
+          "additions": 0,
+          "deletions": 0
+        },
+        "c7706a1a5e8c989633ff592d47ba950d80fe88cd": {
+          "additions": 0,
+          "deletions": 0
+        },
+        "d01c7cc00167194724927ab3b4956c3cb85c8ec6": {
+          "additions": 1,
+          "deletions": 1
+        },
+        "f85c4180ea226691b1b62ea6bd543f7bd26fad0a": {
+          "additions": 0,
+          "deletions": 361
+        }
+      }
+    },
+    "gonzalomayorga/estadisticas-torneo-futbol": {
+      "commits": {
+        "18fc690268e2fb86719fd22de5fcc6066f6e61aa": {
+          "additions": 4,
+          "deletions": 0
+        },
+        "1ce5e3a1adf2c6aa9f18d1eda4ef3396bf85efd8": {
+          "additions": 131,
+          "deletions": 0
+        },
+        "cc2c618fb114f3d3d840eb6789ed5b3c152fe09e": {
+          "additions": 53,
+          "deletions": 1
+        },
+        "cd1adaaf997f5fc4034d670709aff20e7f561e76": {
+          "additions": 1,
+          "deletions": 0
+        }
+      }
+    },
+    "gonzalomayorga/layoutchaza": {
+      "commits": {
+        "9112e4dbc035d3e6a08b8ee374c8919b119358cd": {
+          "additions": 2,
+          "deletions": 99
+        },
+        "91a03a0dfadac4ab44ac878db0ffca1bff35cc47": {
+          "additions": 612,
+          "deletions": 36
+        },
+        "c44e4c7f0f652a4f718696f12476f9e6e3703dc9": {
+          "additions": 513,
+          "deletions": 0
+        }
+      }
+    },
+    "gonzalomayorga/prex-giphy-api--challenge": {
+      "commits": {
+        "18596bf05f20f78eed17fe0dea82ba8e9047bc38": {
+          "additions": 2493,
+          "deletions": 74
+        },
+        "2815b7abf926c9c391f05f436e2283fba3debd31": {
+          "additions": 11302,
+          "deletions": 0
+        },
+        "42cb59fa8ac5c6769516ff33a21404831aabbf87": {
+          "additions": 1610,
+          "deletions": 1
+        },
+        "543f8d51881b5e63344c06cd760760ae84db74fd": {
+          "additions": 1072,
+          "deletions": 14
+        },
+        "81e4a3ca3b35907924b71d883fd12f6e4039cf47": {
+          "additions": 2950,
+          "deletions": 475
+        },
+        "bb733405a8acf122be993ed91f6f18bbab25c499": {
+          "additions": 2,
+          "deletions": 2
+        },
+        "bc71ccb7c6663d16edbd69ee00281b97785c166e": {
+          "additions": 1470,
+          "deletions": 1
+        },
+        "c0ccc6e6a46eda0ed5c89ae3c47d5e85616ea582": {
+          "additions": 819,
+          "deletions": 15
+        }
+      }
+    },
+    "gonzalomayorga/sumo": {
+      "commits": {
+        "549683b4f3549f48c8ed413b86f1d81d65a84c54": {
+          "additions": 4980,
+          "deletions": 0
+        }
+      }
+    },
+    "gonzalomayorga/tpi_programacion_1_gestion_paises": {
+      "commits": {
+        "9604de2c0e09a5802f5330d8b2507b73b6e8b7e7": {
+          "additions": 1,
+          "deletions": 1
+        },
+        "b31e53ccc0a5c9b23dc61d64f528c5acbc0aa7e1": {
+          "additions": 673,
+          "deletions": 0
+        },
+        "bc402339b5f6746f01d749982e2944e4998cd33a": {
+          "additions": 28,
+          "deletions": 7
+        }
+      }
+    },
+    "gonzalomayorga/trabajos-pp2023": {
+      "commits": {
+        "02b3760ddc957c9c4173c808faf04c201eb14a68": {
+          "additions": 573,
+          "deletions": 2
+        },
+        "254b255e4ca57676544f9baf2d52c7aff0a0ae76": {
+          "additions": 0,
+          "deletions": 0
+        },
+        "345f3b21dabeefefcced9306ecc3b1f2e44d7369": {
+          "additions": 17,
+          "deletions": 8
+        },
+        "35771c4cb99078f8bb498c8a8deabd52b2010051": {
+          "additions": 1203,
+          "deletions": 28
+        },
+        "36ed826956aad1b562f855ec1ac96de46c08c51f": {
+          "additions": 17,
+          "deletions": 9
+        },
+        "3c61d1d0a02889566c1bfdc77dfe0e660c861c73": {
+          "additions": 2,
+          "deletions": 2
+        },
+        "402c2a4f99ee2132a0de1dd524ec45256171ca29": {
+          "additions": 0,
+          "deletions": 0
+        },
+        "4b7858f040f32f4c8a65b679d91035dcb7755ef2": {
+          "additions": 14,
+          "deletions": 0
+        },
+        "58fb1c1dc3b2a7ae5050f2fb8e979144d7ab1b73": {
+          "additions": 2,
+          "deletions": 1
+        },
+        "63e79e682c985b87341d52bd755e3c75e6df55b4": {
+          "additions": 14,
+          "deletions": 0
+        },
+        "670c655e092ce002a4ff81227e80dd11f7c7d454": {
+          "additions": 21,
+          "deletions": 22
+        },
+        "6934d6d3246700161c7940807a630310b595a342": {
+          "additions": 7,
+          "deletions": 2
+        },
+        "6eb6d1310cc7cdad0d38887048379c85c4a33c73": {
+          "additions": 20,
+          "deletions": 9
+        },
+        "6f50e75f0dd732d5bddd8c07c4a80e38b1e1719c": {
+          "additions": 362,
+          "deletions": 0
+        },
+        "8020c1ad972bdea88175b4db47ed4c19d7b9e506": {
+          "additions": 11,
+          "deletions": 0
+        },
+        "920e8e0130845650d645d77dc8e39a4698ba7acb": {
+          "additions": 0,
+          "deletions": 14
+        },
+        "a6eb512ce90d8b7e22c93e4f566aa5146e354094": {
+          "additions": 11,
+          "deletions": 10
+        },
+        "b4eb240c7e03f38eda29f315e50cfc5b1ae9544f": {
+          "additions": 148,
+          "deletions": 3
+        },
+        "c45d1a93f3e628bf1bb871edf1d5db7feea42106": {
+          "additions": 1,
+          "deletions": 1
+        },
+        "e86dc090a705e8f837d448fd3e6cbdd3b82c83b9": {
+          "additions": 108,
+          "deletions": 22
+        },
+        "fe72bbd70c99eba1d3f4c2319b17b32769a01008": {
+          "additions": 28,
+          "deletions": 16
+        }
+      }
+    },
+    "gonzalomayorga/utn-tupad--programacion1": {
+      "commits": {
+        "3514e39f5e1ad2bb74922eb7fcc0963b5e6f9c89": {
+          "additions": 1719,
+          "deletions": 0
+        },
+        "6dc05cd6d12a77482dab65ca057065049b45a7e5": {
+          "additions": 2,
+          "deletions": 0
+        }
+      }
+    },
+    "gonzalomayorga/webgenerator": {
+      "commits": {
+        "5653cafb7a5ed0de855b0084e7c01fdbb8498203": {
+          "additions": 477,
+          "deletions": 0
+        },
+        "5af095572485529c6f95aeea911913a171cdd5c6": {
+          "additions": 2,
+          "deletions": 2
+        }
+      }
+    }
+  },
+  "version": 1
+}
