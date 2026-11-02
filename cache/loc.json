@@ -160,6 +160,26 @@
         }
       }
     },
+    "gonzalomayorga/tpi-utn-oe": {
+      "commits": {
+        "34823741c4679a437124020b33776fe6b5f4d6ec": {
+          "additions": 936,
+          "deletions": 377
+        },
+        "58a82691dee91d35ce67d3deee5852c927c21ac6": {
+          "additions": 0,
+          "deletions": 0
+        },
+        "92d45b69727c176b67f72097bcc06f7a1f87758a": {
+          "additions": 1,
+          "deletions": 0
+        },
+        "9b8de010e3a0b5dd38efd939e912267ba1e88b7c": {
+          "additions": 446,
+          "deletions": 0
+        }
+      }
+    },
     "gonzalomayorga/tpi_programacion_1_gestion_paises": {
       "commits": {
         "9604de2c0e09a5802f5330d8b2507b73b6e8b7e7": {
